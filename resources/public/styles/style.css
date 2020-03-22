@@ -1,0 +1,12 @@
+.nav {
+  color: #000;
+}
+.right-text {
+  text-align: right;
+}
+.selected-nav {
+  border-top: 1px solid black;
+}
+.nav-item {
+  cursor: pointer;
+}
