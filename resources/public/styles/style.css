@@ -8,5 +8,12 @@
   border-top: 1px solid black;
 }
 .nav-item {
+}
+.nav-item:hover {
+  color: grey;
   cursor: pointer;
+}
+.image-of-me {
+  object-fit: cover;
+  border-radius: 5px;
 }

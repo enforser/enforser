@@ -18,7 +18,7 @@
 (defn get-assets
   []
   (assets/load-assets "public" [#"/styles/.*\.css"
-                                ;; #"/photos/.*\.jpg"
+                                #"/photos/.*\.jpg"
                                 ]))
 (defn header-item
   [page selected]
