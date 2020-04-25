@@ -8,7 +8,9 @@
      [:code
       "
 #
-# TODO
+# Author: Matthew Fors
 #
       "
+      [:li [:a {:href "learning-functional-first.html"} "[24-02-2020] Functional First"]]
+      "\n"
      ]]]])

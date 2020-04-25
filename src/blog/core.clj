@@ -3,7 +3,9 @@
     [blog.pages.index :as index]
     [blog.pages.contact :as contact]
     [blog.pages.blog :as blog]
+    [blog.pages.posts.learning-functional-first :as fp-first]
     [clojure.pprint :as pprint]
+    [clojure.string :as st]
     [ring.middleware.content-type :refer [wrap-content-type]]
     [stasis.core :as stasis]
     [hiccup.core :refer [html]]
@@ -18,8 +20,7 @@
 (defn get-assets
   []
   (assets/load-assets "public" [#"/styles/.*\.css"
-                                #"/photos/.*\.jpg"
-                                ]))
+                                #"/photos/.*\.jpg"]))
 (defn header-item
   [page selected]
   [:h5 {:class (str "two columns nav-item" (when (= page selected) " selected-nav"))
@@ -68,8 +69,9 @@
       (html (hiccup-with-header title body)))))
 
 (defn get-pages
-  ([] (merge (get-pages true)
-             (get-pages false)))
+  ([]
+   (merge (get-pages true)
+          (get-pages false)))
   ([as-hiccup]
    (reduce-kv
      (fn [m k v]
@@ -78,11 +80,13 @@
      {"index" #((to-html as-hiccup) "About" (index/page %))
       "about" #((to-html as-hiccup) "About" (index/page %))
       "blog" #((to-html as-hiccup) "Blog" (blog/page %))
-      "contact" #((to-html as-hiccup) "Contact" (contact/page %))})))
+      "contact" #((to-html as-hiccup) "Contact" (contact/page %))
+      "learning-functional-first" #((to-html as-hiccup) "learning-functional-first" (fp-first/content %))})))
 
-(def app (-> (stasis/serve-pages (get-pages))
-             (optimus/wrap get-assets optimizations/all serve-live-assets)
-             wrap-content-type))
+(def app
+  (-> (stasis/serve-pages (get-pages))
+      (optimus/wrap get-assets optimizations/all serve-live-assets)
+      wrap-content-type))
 
 (defn export []
   (let [assets (optimizations/all (get-assets) {})
