@@ -1,0 +1,15 @@
+[package]
+name = "decrypt-zcash"
+version = "0.1.0"
+authors = ["enforser <you@example.com>"]
+edition = "2018"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+wasm-bindgen = "0.2"
+hex = "0.4.2"
+bech32 = "0.4.1"
+zcash_primitives = { git = "https://github.com/zcash/librustzcash", rev = "b86558c63a3097c59f6d9c3df986e64b833696ce" }
+pairing = { git = "https://github.com/zcash/librustzcash", rev = "b86558c63a3097c59f6d9c3df986e64b833696ce" }

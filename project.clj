@@ -7,7 +7,8 @@
                  [ring "1.8.0"]
                  [optimus "0.20.2"]
                  [stasis "2.5.0"]
-                 [hiccup "1.0.5"]]
+                 [hiccup "1.0.5"]
+                 [me.raynes/fs "1.4.6"]]
   :plugins [[lein-ring "0.12.5"]]
   :ring {:handler blog.core/app}
   :main ^:skip-aot blog.core
