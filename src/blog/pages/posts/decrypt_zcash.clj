@@ -14,7 +14,7 @@
     [:p "To protect your privacy all decryption processing on this page is done entirely in your browser. This avoids your OCK from needing to be shared over the web, to be decrypted on some unknown server. This is done by using WebAssembly to take advantage of the Outgoing Cipher Key decryption already defined in the "
      [:a {:href "https://github.com/zcash/librustzcash"} "librustzcash"]
      " rust crate. The WebAssembly/Rust interop can be found "
-     [:a {:href "https://github.com/enforser/enforser/decrypt-zcash"} "here"]
+     [:a {:href "https://github.com/enforser/enforser/tree/master/decrypt-zcash"} "here"]
      "."]]
    [:div {:class "row"}
     [:p "Raw Transaction" ]
