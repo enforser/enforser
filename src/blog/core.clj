@@ -5,6 +5,7 @@
     [blog.pages.blog :as blog]
     [blog.pages.posts.learning-functional-first :as fp-first]
     [blog.pages.posts.decrypt-zcash :as decrypt-zcash]
+    [blog.pages.posts.zcash-ovk :as zcash-ovk]
     [clojure.pprint :as pprint]
     [clojure.string :as st]
     [ring.middleware.content-type :refer [wrap-content-type]]
@@ -44,7 +45,7 @@
        "(enforser)"]]])
 
 (defn hiccup-with-header
-  [title & body]
+  [title link-to-hiccup & body]
   [:html
    [:head
     [:title (str title " - Matthew Fors")]
@@ -57,8 +58,8 @@
          [:div {:class "container"}
           [:a {:class "twelve columns"
                :style "text-align: right"
-               :href (str "/" (.toLowerCase title) "-as-code.html")}
-           "Hiccup"]])])
+               :href (str "/" (.toLowerCase title) (if link-to-hiccup "-as-code.html" ".html"))}
+           (if link-to-hiccup "Hiccup" "Back")]])])
 
 (defn to-html
   [& [as-hiccup?]]
@@ -66,11 +67,12 @@
     (if as-hiccup?
       (html (hiccup-with-header
               title
+              false
               [:div {:class "container"}
                [:pre
                 [:code
-                 (with-out-str (pprint/pprint (hiccup-with-header title body)))]]]))
-      (html (hiccup-with-header title body)))))
+                 (with-out-str (pprint/pprint (hiccup-with-header title true body)))]]]))
+      (html (hiccup-with-header title true body)))))
 
 (defn get-pages
   ([]
@@ -86,7 +88,8 @@
       "blog" #((to-html as-hiccup) "Blog" (blog/page %))
       "contact" #((to-html as-hiccup) "Contact" (contact/page %))
       "learning-functional-first" #((to-html as-hiccup) "learning-functional-first" (fp-first/content %))
-      "decrypt-zcash" #((to-html as-hiccup) "decrypt-zcash" (decrypt-zcash/content %))})))
+      "decrypt-zcash" #((to-html as-hiccup) "decrypt-zcash" (decrypt-zcash/content %))
+      "zcash-outgoing-viewing-key" #((to-html as-hiccup) "zcash-outgoing-viewing-key" (zcash-ovk/content %))})))
 
 (def app
   (-> (stasis/serve-pages (get-pages))

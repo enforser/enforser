@@ -12,14 +12,14 @@
     [:p "There are other viewing keys in Zcash which are more restrictive in terms of what information they disclose. This post is concerned with the \"Outgoing Cipher Key\" (OCK). The OCK is a 32-byte key which has the ability to decrypt a single output of a transaction. This is valuable because it allows specific payments to be disclosed to third parties, without revealing any information outside of the single output."]
     [:p "The following form accepts a raw transaction and an OCK. To decrypt, each shielded output of the transaction is applied against the given OCK until one is successfully decrypted."]
     [:p "To protect your privacy all decryption processing on this page is done entirely in your browser. This avoids your OCK from needing to be shared over the web, to be decrypted on some unknown server. This is done by using WebAssembly to take advantage of the Outgoing Cipher Key decryption already defined in the "
-     [:a {:href "https://github.com/zcash/librustzcash"} "librustzcash"]
+     [:a {:href "https://github.com/zcash/librustzcash/tree/master/zcash_primitives"} "zcash_primitives"]
      " rust crate. The WebAssembly/Rust interop can be found "
      [:a {:href "https://github.com/enforser/enforser/tree/master/decrypt-zcash"} "here"]
      "."]]
    [:div {:class "row"}
     [:p "Raw Transaction" ]
     [:textarea {:id "rawTx" :cols "60"}]
-    [:p "Outgoing Cipher Key"]
+    [:p "Outgoing Cipher Key (Remove '0x' prefix)"]
     [:textarea {:id "ock" :cols "40"}]
     [:br]
     [:input {:id "decryptForm" :type "submit" :value "Decrypt!"}]]
@@ -37,7 +37,7 @@
      [:td {:id "memo"}]]]
    [:script {:type "module"}
     "
-      import init, { greet } from './decrypt-zcash-assets/decrypt_zcash.js';
+      import init, { parseock } from './decrypt-zcash-assets/decrypt_zcash.js';
       async function decryptOutput() {
         await init();
         document.getElementById('results').hidden = true;
@@ -46,7 +46,7 @@
         try {
             console.log(document.getElementById('rawTx').value)
             console.log(document.getElementById('ock').value)
-            const parsed = greet(
+            const parsed = parseock(
               document.getElementById('rawTx').value,
               document.getElementById('ock').value
             );
@@ -56,7 +56,7 @@
               zatoshis,
               zec,
               address,
-              memo
+              memo: memo || ''
             };
             console.log(decrypted.memo);
             document.getElementById('memo').innerHTML = decrypted.memo.length < 1 ? '<i>no memo provided</i>' : decrypted.memo;
