@@ -4,14 +4,14 @@
   [context]
   [:div {:class "container"}
    [:div {:class "row"}
-    [:img {:src "photos/me.jpg" :class "image-of-me three columns"}]
-    [:div {:class "nine columns"}
+    [:img {:src "photos/mountain-matt.png" :class "image-of-me five columns"}]
+    [:div {:class "seven columns"}
     [:p
      "Welcome! My name is Matthew Fors."]
     [:p
-     "I'm a software engineer currently located in NYC. I moved to New York in May of 2019 with my girlfriend and dog from Ottawa, Canada. While in Ottawa, I attended Carleton University from 2014 through to 2019 to complete a Bachelors degree in computer science, with a minor in philosophy."]
+     "I'm currently located in Canada. In the past few years I've lived in New York, Vancouver, Montreal, and spent a few months in India/Nepal. I've been working as a software engineer at Gemini building cryptocurrency wallets since 2020."]
     [:p
-     "In my spare time, you may find me exploring new vegan restaurants, watching reality TV, or hanging out at a punk show. My philosophical interests include consequentialist ethics and philosophy of mind."]
+     "In my spare time, you may find me cooking up new vegan recipes, shredding a ski hill, or on a dancefloor seeking out the best sound system."]
     [:p
      "This site is a project of mine that is meant to contain my thoughts on various topics, including; ethics, software engineering, functional programming, philosophy, and more. It is also meant to serve as a reference point for the "
      [:a {:href "/contact.html"} "rest of my online presence"]

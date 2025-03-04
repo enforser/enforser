@@ -4,6 +4,7 @@
     [blog.pages.contact :as contact]
     [blog.pages.blog :as blog]
     [blog.pages.posts.learning-functional-first :as fp-first]
+    [blog.pages.posts.hyperdrive :as hyperdrive]
     [blog.pages.posts.decrypt-zcash :as decrypt-zcash]
     [blog.pages.posts.zcash-ovk :as zcash-ovk]
     [clojure.pprint :as pprint]
@@ -24,6 +25,7 @@
   []
   (assets/load-assets "public" [#"/styles/.*\.css"
                                 #"/photos/.*\.jpg"
+                                #"/photos/.*\.png"
                                 #"/photos/.*\.ico"]))
 (defn header-item
   [page selected]
@@ -89,6 +91,7 @@
       "contact" #((to-html as-hiccup) "Contact" (contact/page %))
       "learning-functional-first" #((to-html as-hiccup) "learning-functional-first" (fp-first/content %))
       "decrypt-zcash" #((to-html as-hiccup) "decrypt-zcash" (decrypt-zcash/content %))
+      "hyperdrive" #((to-html as-hiccup) "hyperdrive" (hyperdrive/content %))
       "zcash-outgoing-viewing-key" #((to-html as-hiccup) "zcash-outgoing-viewing-key" (zcash-ovk/content %))})))
 
 (def app
